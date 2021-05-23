@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Http\Response;
+
 /**
  * LiveChannels Controller
  *
@@ -14,11 +16,11 @@ class LiveChannelsController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return Response|null|void Renders view
      */
     public function index()
     {
-        $liveChannels = $this->paginate($this->LiveChannels);
+        $liveChannels = $this->LiveChannels->find('all');
 
         $this->set(compact('liveChannels'));
     }
@@ -27,7 +29,7 @@ class LiveChannelsController extends AppController
      * View method
      *
      * @param string|null $id Live Channel id.
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
@@ -42,7 +44,7 @@ class LiveChannelsController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
+     * @return Response|null|void Redirects on successful add, renders view otherwise.
      */
     public function add()
     {
@@ -63,7 +65,7 @@ class LiveChannelsController extends AppController
      * Edit method
      *
      * @param string|null $id Live Channel id.
-     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
+     * @return Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function edit($id = null)
@@ -87,7 +89,7 @@ class LiveChannelsController extends AppController
      * Delete method
      *
      * @param string|null $id Live Channel id.
-     * @return \Cake\Http\Response|null|void Redirects to index.
+     * @return Response|null|void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)
@@ -101,6 +103,30 @@ class LiveChannelsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * Move to method
+     *
+     * @param int $id Live Channel id.
+     * @param int $newPosition
+     * @return Response|null
+     */
+    public function moveTo($id = null, $newPosition = 1)
+    {
+        $liveChannels = $this->LiveChannels->find('all');
+        $data = [];
+        foreach ($liveChannels as $i => $liveChannel) {
+            if ($liveChannel->id == $id) continue;
+            if (($i + 1) == $newPosition) $data[] = (int)$id;
+            $data[] = $liveChannel->id;
+        }
+
+        if (!$this->LiveChannels->setOrder($data)) {
+            $this->Flash->error(__('The channel could not be moved!'));
+        }
+
+        $this->setAction('index');
     }
 
     /**

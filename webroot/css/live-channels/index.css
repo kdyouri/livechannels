@@ -1,0 +1,34 @@
+#sortable { list-style-type: none; margin: 0; padding: 0; }
+#sortable li { margin-bottom: 2px; font-size: 9pt; }
+.ui-state-highlight {
+    min-height: 16px;
+    border: 1px dashed #aaa;
+    background: transparent;
+}
+.handle,
+.nbr,
+.name {
+    float: left;
+    padding: 2px 4px;
+}
+.name {
+    width: 500px;
+}
+.name .btn {
+    padding: 2px 4px;
+    font-size: 8pt;
+}
+.handle { border: 1px solid #f6f6f6; background: #aaa; cursor: move; color: #fff; }
+.nbr { width: 40px; text-align: right; }
+.ui-state-default {
+    clear: both;
+    overflow: hidden;
+}
+#LoadingSpin {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.5);
+}

@@ -63,21 +63,15 @@ class LiveChannelsTable extends Table
 
         $validator
             ->scalar('language')
-            ->maxLength('language', 50)
-            ->requirePresence('language', 'create')
-            ->notEmptyString('language');
+            ->maxLength('language', 50);
 
         $validator
             ->scalar('country')
-            ->maxLength('country', 50)
-            ->requirePresence('country', 'create')
-            ->notEmptyString('country');
+            ->maxLength('country', 50);
 
         $validator
             ->scalar('category')
-            ->maxLength('category', 50)
-            ->requirePresence('category', 'create')
-            ->notEmptyString('category');
+            ->maxLength('category', 50);
 
         $validator
             ->scalar('uri')
@@ -86,34 +80,27 @@ class LiveChannelsTable extends Table
 
         $validator
             ->scalar('response_body')
-            ->requirePresence('response_body', 'create')
             ->notEmptyString('response_body');
 
         $validator
             ->scalar('response_code')
             ->maxLength('response_code', 50)
-            ->requirePresence('response_code', 'create')
             ->notEmptyString('response_code');
 
         $validator
             ->integer('frame_width')
-            ->requirePresence('frame_width', 'create')
             ->notEmptyString('frame_width');
 
         $validator
             ->integer('frame_height')
-            ->requirePresence('frame_height', 'create')
             ->notEmptyString('frame_height');
 
         $validator
             ->integer('bit_rate')
-            ->requirePresence('bit_rate', 'create')
-            ->notEmptyString('bit_rate');
+            ->allowEmptyString('bit_rate');
 
         $validator
-            ->integer('position')
-            ->requirePresence('position', 'create')
-            ->notEmptyString('position');
+            ->integer('position');
 
         $validator
             ->requirePresence('is_valid', 'create')

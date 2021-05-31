@@ -54,7 +54,7 @@ class LiveChannelsController extends AppController
             if ($this->LiveChannels->save($liveChannel)) {
                 $this->Flash->success(__('The live channel has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->setAction('index');
             }
             $this->Flash->error(__('The live channel could not be saved. Please, try again.'));
         }
@@ -78,7 +78,7 @@ class LiveChannelsController extends AppController
             if ($this->LiveChannels->save($liveChannel)) {
                 $this->Flash->success(__('The live channel has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->setAction('index');
             }
             $this->Flash->error(__('The live channel could not be saved. Please, try again.'));
         }
@@ -94,7 +94,7 @@ class LiveChannelsController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        //$this->request->allowMethod(['post', 'delete']);
         $liveChannel = $this->LiveChannels->get($id);
         if ($this->LiveChannels->delete($liveChannel)) {
             $this->Flash->success(__('The live channel has been deleted.'));
@@ -102,7 +102,7 @@ class LiveChannelsController extends AppController
             $this->Flash->error(__('The live channel could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->setAction('index');
     }
 
     /**

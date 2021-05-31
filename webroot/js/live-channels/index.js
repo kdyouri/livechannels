@@ -35,3 +35,15 @@ function moveTo(id, position, element) {
 $(function(){
     makeSortable();
 });
+
+$(document).on('xcrud.content.updated', function(){
+    makeSortable();
+});
+
+$(document).on('mouseenter', '[data-bs-toggle="tooltip"]', function(){
+    var tooltip = bootstrap.Tooltip.getInstance(this);
+
+    if (tooltip == null) tooltip = new bootstrap.Tooltip(this);
+
+    tooltip.show();
+});

@@ -15,12 +15,15 @@ declare(strict_types=1);
  */
 namespace App\View;
 
+use App\View\Helper\LiveChannelHelper;
 use Cake\View\View;
 
 /**
  * Application View
  *
  * Your application's default view class
+ *
+ * @property LiveChannelHelper $LiveChannel
  *
  * @link https://book.cakephp.org/4/en/views.html#the-app-view
  */

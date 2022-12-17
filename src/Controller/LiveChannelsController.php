@@ -86,6 +86,30 @@ class LiveChannelsController extends AppController
     }
 
     /**
+     * Duplicate method
+     *
+     * @param string|null $id Live Channel id.
+     * @return Response|null|void Redirects on successful edit, renders view otherwise.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function duplicate($id = null)
+    {
+        $liveChannel = $this->LiveChannels->get($id);
+        $liveChannel->id = null;
+        $liveChannel->setNew(true);
+        if ($this->request->is('post')) {
+            $liveChannel = $this->LiveChannels->patchEntity($liveChannel, $this->request->getData());
+            if ($this->LiveChannels->save($liveChannel)) {
+                $this->Flash->success(__('The live channel has been saved.'));
+
+                return $this->setAction('index');
+            }
+            $this->Flash->error(__('The live channel could not be saved. Please, try again.'));
+        }
+        $this->set(compact('liveChannel'));
+    }
+
+    /**
      * Delete method
      *
      * @param string|null $id Live Channel id.

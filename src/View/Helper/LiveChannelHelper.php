@@ -32,14 +32,14 @@ class LiveChannelHelper extends Helper
         return $channel->name . $suffix;
     }
 
-    public function getChannelGroups(LiveChannel $channel) {
+    public function getChannelGroups(LiveChannel $channel, $separator = ';') {
         $groups = array();
 
         if ($language = $channel->language) $groups[] = $language;
         if ($country = $channel->country) $groups[] = $country;
         if ($category = $channel->category) $groups[] = $category;
 
-        return join(';', $groups);
+        return join($separator, $groups);
     }
 
 }

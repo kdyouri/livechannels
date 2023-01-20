@@ -13,6 +13,12 @@ use Cake\Http\Response;
  */
 class LiveChannelsController extends AppController
 {
+    public function beforeFilter(\Cake\Event\EventInterface $event)
+    {
+        parent::beforeFilter($event);
+        $this->Authentication->addUnauthenticatedActions(['getPlaylist']);
+    }
+
     /**
      * Index method
      *

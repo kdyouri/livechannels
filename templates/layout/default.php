@@ -15,11 +15,14 @@
 </head>
 <body>
     <div class="col-lg-8 mx-auto p-3 py-md-5">
-        <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
-            <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <a href="/" class="d-flex align-items-center col-md-6 mb-2 mb-md-0 text-dark text-decoration-none">
                 <i class="bi bi-sort-up me-2" style="font-size: 2em;"></i>
                 <span class="fs-4">Live Channels Manager</span>
             </a>
+            <div class="col-md-6 text-end">
+                <a href="<?= $this->Url->build('/users/logout') ?>" class="btn btn-primary">Logout</a>
+            </div>
         </header>
 
         <main>
